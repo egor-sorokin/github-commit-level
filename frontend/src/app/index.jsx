@@ -18,6 +18,7 @@ const Page = () => {
 
         stats,
         userName,
+        fieldsError,
         isStatsLoading,
 
         onUserNameChange,
@@ -44,22 +45,23 @@ const Page = () => {
                             onCheckStats={onCheckStats}
                         />
                     </SearchContainer>
-                    {
-                        !isStatsLoading && stats && (
-                            <StatsContainer>
-                                <Stats stats={stats}/>
-                            </StatsContainer>
-                        )
-                    }
-                    {
-                        isStatsLoading && !stats && (
-                            <StatsContainer>
+                    <StatsContainer>
+                        {
+                            !isStatsLoading && stats && (<Stats stats={stats} fieldsError={fieldsError}/>)
+                        }
+                        {
+                            isStatsLoading && !stats && (
                                 <CenteredSpinnerContainer>
                                     <CenteredSpinner/>
                                 </CenteredSpinnerContainer>
-                            </StatsContainer>
-                        )
-                    }
+                            )
+                        }
+                        {
+                            !isStatsLoading && fieldsError.check && (
+                                <SectionMessage appearance="error">{fieldsError.check.message}</SectionMessage>
+                            )
+                        }
+                    </StatsContainer>
                 </main>
             )}
         </PageContainer>

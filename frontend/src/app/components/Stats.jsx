@@ -6,35 +6,33 @@ import { CurrentLevelImage, FigureContainer } from './styled';
 
 
 const Stats = ({ stats }) => (
-    stats && (
-        <section>
-            <FigureContainer>
-                <CurrentLevelImage
-                    src={get(stats, 'currentLevel.image', '')}
-                    alt="Alt description goes here"
-                />
-            </FigureContainer>
-            <h2>
-                Congratulations! You are &quot;{get(stats, 'currentLevel.level', '-')}&quot;.
-            </h2>
-            <p>
-                <b>Username: </b>
-                {stats.userName}
-            </p>
-            <p>
-                <b>Total commits: </b>
-                {stats.commits}
-            </p>
-            <p>
-                <b>Commits for the next level: </b>
-                {get(stats, 'nextLevel.commits') ? get(stats, 'nextLevel.commits') - stats.commits : 0}
-            </p>
-            <p>
-                <b>Description: </b>
-                {get(stats, 'currentLevel.text', '-')}
-            </p>
-        </section>
-    )
+    <section>
+        <FigureContainer>
+            <CurrentLevelImage
+                src={get(stats, 'currentLevel.image', '')}
+                alt="Alt description goes here"
+            />
+        </FigureContainer>
+        <h2>
+            Congratulations! You are &quot;{get(stats, 'currentLevel.level', '-')}&quot;.
+        </h2>
+        <p>
+            <b>Username: </b>
+            {stats.userName}
+        </p>
+        <p>
+            <b>Total commits: </b>
+            {stats.commits}
+        </p>
+        <p>
+            <b>Commits for the next level: </b>
+            {get(stats, 'nextLevel.commits') ? get(stats, 'nextLevel.commits') - stats.commits : 0}
+        </p>
+        <p>
+            <b>Description: </b>
+            {get(stats, 'currentLevel.text', '-')}
+        </p>
+    </section>
 );
 
 Stats.propTypes = {
@@ -55,8 +53,16 @@ Stats.propTypes = {
             level: PropTypes.string
         }),
         text: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    fieldsError: PropTypes.shape({
+        check: PropTypes.shape({
+            message: PropTypes.string
+        })
+    })
 };
 
+Stats.defaultProps = {
+    fieldsError: {}
+};
 
 export default Stats;

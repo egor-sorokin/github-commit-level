@@ -19,6 +19,7 @@ function useStats() {
     const [allStats, setAllStats] = useState(null);
     const [userName, setUserName] = useState('');
     const [isStatsLoading, setIsStatsLoading] = useState(false);
+    const [fieldsError, setFieldsError] = useState({});
 
     const isLoading = [
         STATUS_INITIALIZING,
@@ -58,6 +59,7 @@ function useStats() {
 
     const onCheckStats = async() => {
         setIsStatsLoading(true);
+        setFieldsError({});
 
         try {
             const statsData = await getStats(URL_PATH_STATS, userName);
@@ -65,6 +67,7 @@ function useStats() {
             setAllStats(statsData.data);
         } catch (err) {
             console.error('err:', err);
+            setFieldsError({ check: err });
         } finally {
             setIsStatsLoading(false);
         }
@@ -77,6 +80,7 @@ function useStats() {
 
         stats,
         userName,
+        fieldsError,
         isStatsLoading,
 
         onUserNameChange,
