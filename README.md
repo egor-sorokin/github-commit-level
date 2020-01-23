@@ -1,13 +1,23 @@
 ## How to run the app
 ```
 yarn install
+cd src/static
+yarn install
+yarn build-prod
+cd ..
 yarn start
 ```
 or 
 ```
 npm install
+cd src/static
+npm install
+npm build-prod
+cd ..
 npm start
 ```
+The second `yarn/npm install` and `yarn/npm build-prod` is related to front end, so there is no need to run it every time.
+
 App will be started on http://localhost:8888/.
 
 ## API
