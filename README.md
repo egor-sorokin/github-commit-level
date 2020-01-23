@@ -1,3 +1,7 @@
+## Description
+Based on GitHub username the app shows his/her "Commit level". In general, it counts all commits across all user's repos.
+ If there is no such user or an error occurred, the error will be shown.
+ 
 ## How to run the app
 ```
 yarn install
